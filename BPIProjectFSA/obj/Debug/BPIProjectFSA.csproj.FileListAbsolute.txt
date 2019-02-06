@@ -1,0 +1,6 @@
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSA\bin\Debug\BPIProjectFSA.exe.config
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSA\bin\Debug\BPIProjectFSA.exe
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSA\bin\Debug\BPIProjectFSA.pdb
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSA\obj\Debug\BPIProjectFSA.csprojResolveAssemblyReference.cache
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSA\obj\Debug\BPIProjectFSA.exe
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSA\obj\Debug\BPIProjectFSA.pdb
