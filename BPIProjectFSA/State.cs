@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace BPIProjectFSA
 {
-    public class State
+    // All the possible states of the Finite State Automata. States can be added here to extend the functionality to return the remainder of 4
+    // (which would have 4 states), 5 (which would have 5 states), etc.
+    public enum State
     {
-        string stateName;
-        public State(string state) 
-        {
-            this.stateName = state;
-        }
-
-        public string GetStateName()
-        {
-            return stateName;
-        }
+        S0 = 0,
+        S1 = 1,
+        S2 = 2
     }
 }

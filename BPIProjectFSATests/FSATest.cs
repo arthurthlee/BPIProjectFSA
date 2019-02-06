@@ -9,71 +9,77 @@ namespace BPIProjectFSATests
     [TestClass]
     public class FSATest
     {
+        
         [TestMethod]
-        public void CheckInvalidInput()
+        public void Check1010Returns1()
         {
-            var state0 = new State("S0");
-            var state1 = new State("S1");
-            var state2 = new State("S2");
-
-            var transition1 = new Transition(state0, 0, state0);
-            var transition2 = new Transition(state0, 1, state1);
-            var transition3 = new Transition(state1, 0, state2);
-            var transition4 = new Transition(state1, 1, state0);
-            var transition5 = new Transition(state2, 0, state1);
-            var transition6 = new Transition(state2, 1, state2);
-
-            var transitions = new List<Transition>();
-            transitions.Add(transition1);
-            transitions.Add(transition2);
-            transitions.Add(transition3);
-            transitions.Add(transition4);
-            transitions.Add(transition5);
-            transitions.Add(transition6);
-
-            var input = "invalid";
-            bool result = false;
-
-            var stateMachine = new StateMachine(state0, transitions);
-            for (int index = 0; index < input.Length; index++)
+            var finalStates = new List<State> 
             {
-                result = stateMachine.GetNextState((int)Char.GetNumericValue(input[index]));
-            }
-            Assert.IsFalse(result, "Invalid input should return false");
+                State.S0,
+                State.S1,
+                State.S2
+            };
+
+            var finiteAutomaton = new FiniteAutomaton(State.S0, finalStates);
+            finiteAutomaton.CreateTransition(State.S0, 0, State.S0);
+            finiteAutomaton.CreateTransition(State.S0, 1, State.S1);
+            finiteAutomaton.CreateTransition(State.S1, 0, State.S2);
+            finiteAutomaton.CreateTransition(State.S1, 1, State.S0);
+            finiteAutomaton.CreateTransition(State.S2, 0, State.S1);
+            finiteAutomaton.CreateTransition(State.S2, 1, State.S2);
+
+            var input = "1010";
+
+            var result = finiteAutomaton.ProcessInput(input);
+            Assert.IsNotNull(result, "1010 input should return a valid state");
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S1);
+            finiteAutomaton.ResetState();
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
         }
 
         [TestMethod]
-        public void Check10Returns1()
+        public void Check110Returns0()
         {
-            var state0 = new State("S0");
-            var state1 = new State("S1");
-            var state2 = new State("S2");
-
-            var transition1 = new Transition(state0, 0, state0);
-            var transition2 = new Transition(state0, 1, state1);
-            var transition3 = new Transition(state1, 0, state2);
-            var transition4 = new Transition(state1, 1, state0);
-            var transition5 = new Transition(state2, 0, state1);
-            var transition6 = new Transition(state2, 1, state2);
-
-            var transitions = new List<Transition>();
-            transitions.Add(transition1);
-            transitions.Add(transition2);
-            transitions.Add(transition3);
-            transitions.Add(transition4);
-            transitions.Add(transition5);
-            transitions.Add(transition6);
-
-            var input = "1010";
-            bool result = false;
-
-            var stateMachine = new StateMachine(state0, transitions);
-            for (int index = 0; index < input.Length; index++)
+            var finalStates = new List<State> 
             {
-                result = stateMachine.GetNextState((int)Char.GetNumericValue(input[index]));
-            }
-            Assert.IsTrue(result, "1010 input should return true");
-            Assert.AreEqual(stateMachine.GetCurrentState().GetStateName(), state1.GetStateName());
+                State.S0,
+                State.S1,
+                State.S2
+            };
+
+            var finiteAutomaton = new FiniteAutomaton(State.S0, finalStates);
+            finiteAutomaton.CreateTransition(State.S0, 0, State.S0);
+            finiteAutomaton.CreateTransition(State.S0, 1, State.S1);
+            finiteAutomaton.CreateTransition(State.S1, 0, State.S2);
+            finiteAutomaton.CreateTransition(State.S1, 1, State.S0);
+            finiteAutomaton.CreateTransition(State.S2, 0, State.S1);
+            finiteAutomaton.CreateTransition(State.S2, 1, State.S2);
+
+            var input = "110";
+
+            var result = finiteAutomaton.ProcessInput(input);
+            Assert.IsNotNull(result, "110 input should return a valid state");
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+            finiteAutomaton.ResetState();
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+        }
+
+        [TestMethod]
+        public void CheckResultStateNotFinal()
+        {
+            var finalStates = new List<State> 
+            {
+                State.S0,
+            };
+
+            var finiteAutomaton = new FiniteAutomaton(State.S0, finalStates);
+            finiteAutomaton.CreateTransition(State.S0, 1, State.S1);
+
+            var input = "1";
+
+            var resultState = finiteAutomaton.ProcessInput(input);
+            var result = finiteAutomaton.IsCurrentStateAFinalState();
+            Assert.IsFalse(result, "1 is not in the set of final states, therefore result should be false");
         }
     }
 }

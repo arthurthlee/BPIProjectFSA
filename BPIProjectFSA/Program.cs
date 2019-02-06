@@ -10,45 +10,36 @@ namespace BPIProjectFSA
     {
         static void Main(string[] args)
         {
-            var state0 = new State("S0");
-            var state1 = new State("S1");
-            var state2 = new State("S2");
+            var finalStates = new List<State> 
+            {
+                State.S0,
+                State.S1,
+                State.S2
+            };
 
-            var transition1 = new Transition(state0, 0, state0);
-            var transition2 = new Transition(state0, 1, state1);
-            var transition3 = new Transition(state1, 0, state2);
-            var transition4 = new Transition(state1, 1, state0);
-            var transition5 = new Transition(state2, 0, state1);
-            var transition6 = new Transition(state2, 1, state2);
-
-            var transitions = new List<Transition>();
-            transitions.Add(transition1);
-            transitions.Add(transition2);
-            transitions.Add(transition3);
-            transitions.Add(transition4);
-            transitions.Add(transition5);
-            transitions.Add(transition6);
+            var stateMachine = new FiniteAutomaton(State.S0, finalStates);
+            stateMachine.CreateTransition(State.S0, 0, State.S0);
+            stateMachine.CreateTransition(State.S0, 1, State.S1);
+            stateMachine.CreateTransition(State.S1, 0, State.S2);
+            stateMachine.CreateTransition(State.S1, 1, State.S0);
+            stateMachine.CreateTransition(State.S2, 0, State.S1);
+            stateMachine.CreateTransition(State.S2, 1, State.S2);
 
             while (true)
             {
                 string input;
                 Console.WriteLine("Enter input: ");
                 input = Console.ReadLine();
-                bool result = false;
-
-                var stateMachine = new StateMachine(state0, transitions);
-                for (int index = 0; index < input.Length; index++)
+                var result = stateMachine.ProcessInput(input);
+                if (stateMachine.IsCurrentStateAFinalState())
                 {
-                    result = stateMachine.GetNextState((int)Char.GetNumericValue(input[index]));
-                }
-                if (result)
-                {
-                    Console.WriteLine("The result is: " + stateMachine.GetCurrentState().GetStateName());
+                    Console.WriteLine("The result is: " + (int)stateMachine.GetCurrentState());
                 }
                 else
                 {
                     Console.WriteLine("Invalid Input");
                 }
+                stateMachine.ResetState();
             }
         }
     }
