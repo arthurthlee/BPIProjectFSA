@@ -9,6 +9,6 @@ The input string is of a reasonable size (less than the maximum length of an Int
 
 
 To run the program, either open the project in Visual Studio (tested in 2012) and click the "Start" button on the top toolbar, or 
-download the BPIProjectFSA.7z file, unzip with 7zip (or any other zip tool) and run the exe.
+download the BPIProjectFSA.zip file, unzip with 7zip (or any other zip tool) and run the exe.
 
 This program took me approximately 2-3 hours to write.
