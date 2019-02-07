@@ -27,7 +27,7 @@ namespace BPIProjectFSA
             {
                 // Read in console input
                 string input;
-                Console.WriteLine("Enter input to be divided by 3: ");
+                Console.WriteLine("Enter binary input to be divided by 3: ");
                 input = Console.ReadLine();
 
                 // Process input and check if the result state is a final state
