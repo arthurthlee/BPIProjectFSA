@@ -1,0 +1,7 @@
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\bin\Release\BPIProjectFSATests.dll
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\bin\Release\BPIProjectFSATests.pdb
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\bin\Release\BPIProjectFSA.exe
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\bin\Release\BPIProjectFSA.pdb
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\obj\Release\BPIProjectFSATests.csprojResolveAssemblyReference.cache
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\obj\Release\BPIProjectFSATests.dll
+C:\Users\ruhtraeel\Documents\Jobs\BPI\BPIProjectFSA\BPIProjectFSATests\obj\Release\BPIProjectFSATests.pdb
