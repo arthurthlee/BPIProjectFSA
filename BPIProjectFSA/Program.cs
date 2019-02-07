@@ -27,14 +27,14 @@ namespace BPIProjectFSA
             {
                 // Read in console input
                 string input;
-                Console.WriteLine("Enter input: ");
+                Console.WriteLine("Enter input to be divided by 3: ");
                 input = Console.ReadLine();
 
                 // Process input and check if the result state is a final state
                 var result = finiteAutomaton.ProcessInput(input);
                 if (finiteAutomaton.IsCurrentStateAFinalState())
                 {
-                    Console.WriteLine("The result is: " + (int)finiteAutomaton.GetCurrentState());
+                    Console.WriteLine("The remainder divided by 3 is: " + (int)finiteAutomaton.GetCurrentState());
                 }
                 else
                 {
