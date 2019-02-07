@@ -10,6 +10,7 @@ namespace BPIProjectFSA
     {
         static void Main(string[] args)
         {
+            // Define the final states for the divide by 3 automata
             var finalStates = new List<State> 
             {
                 State.S0,
@@ -17,30 +18,45 @@ namespace BPIProjectFSA
                 State.S2
             };
 
-            var stateMachine = new FiniteAutomaton(State.S0, finalStates);
-            stateMachine.CreateTransition(State.S0, 0, State.S0);
-            stateMachine.CreateTransition(State.S0, 1, State.S1);
-            stateMachine.CreateTransition(State.S1, 0, State.S2);
-            stateMachine.CreateTransition(State.S1, 1, State.S0);
-            stateMachine.CreateTransition(State.S2, 0, State.S1);
-            stateMachine.CreateTransition(State.S2, 1, State.S2);
+            // Create the transition table for the divide by 3 automata
+            var finiteAutomaton = new FiniteAutomaton(State.S0, finalStates);
+            CreateDivideBy3TransitionTable(finiteAutomaton);
 
+            // Keep console window running
             while (true)
             {
+                // Read in console input
                 string input;
                 Console.WriteLine("Enter input: ");
                 input = Console.ReadLine();
-                var result = stateMachine.ProcessInput(input);
-                if (stateMachine.IsCurrentStateAFinalState())
+
+                // Process input and check if the result state is a final state
+                var result = finiteAutomaton.ProcessInput(input);
+                if (finiteAutomaton.IsCurrentStateAFinalState())
                 {
-                    Console.WriteLine("The result is: " + (int)stateMachine.GetCurrentState());
+                    Console.WriteLine("The result is: " + (int)finiteAutomaton.GetCurrentState());
                 }
                 else
                 {
                     Console.WriteLine("Invalid Input");
                 }
-                stateMachine.ResetState();
+                // Reset the automata after each process run
+                finiteAutomaton.ResetState();
             }
+        }
+
+        private static void CreateDivideBy3TransitionTable(FiniteAutomaton finiteAutomaton)
+        {
+            if (finiteAutomaton == null)
+            {
+                return;
+            }
+            finiteAutomaton.CreateTransition(State.S0, 0, State.S0);
+            finiteAutomaton.CreateTransition(State.S0, 1, State.S1);
+            finiteAutomaton.CreateTransition(State.S1, 0, State.S2);
+            finiteAutomaton.CreateTransition(State.S1, 1, State.S0);
+            finiteAutomaton.CreateTransition(State.S2, 0, State.S1);
+            finiteAutomaton.CreateTransition(State.S2, 1, State.S2);
         }
     }
 }

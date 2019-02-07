@@ -58,8 +58,33 @@ namespace BPIProjectFSATests
             var input = "110";
 
             var result = finiteAutomaton.ProcessInput(input);
-            Assert.IsNotNull(result, "110 input should return a valid state");
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+            finiteAutomaton.ResetState();
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+        }
+
+        [TestMethod]
+        public void Check10Returns2()
+        {
+            var finalStates = new List<State> 
+            {
+                State.S0,
+                State.S1,
+                State.S2
+            };
+
+            var finiteAutomaton = new FiniteAutomaton(State.S0, finalStates);
+            finiteAutomaton.CreateTransition(State.S0, 0, State.S0);
+            finiteAutomaton.CreateTransition(State.S0, 1, State.S1);
+            finiteAutomaton.CreateTransition(State.S1, 0, State.S2);
+            finiteAutomaton.CreateTransition(State.S1, 1, State.S0);
+            finiteAutomaton.CreateTransition(State.S2, 0, State.S1);
+            finiteAutomaton.CreateTransition(State.S2, 1, State.S2);
+
+            var input = "10";
+
+            var result = finiteAutomaton.ProcessInput(input);
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S2);
             finiteAutomaton.ResetState();
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
         }
