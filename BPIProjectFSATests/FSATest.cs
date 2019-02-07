@@ -30,8 +30,8 @@ namespace BPIProjectFSATests
 
             var input = "1010";
 
-            var result = finiteAutomaton.ProcessInput(input);
-            Assert.IsNotNull(result, "1010 input should return a valid state");
+            bool result = finiteAutomaton.ProcessInput(input);
+            Assert.IsTrue(result);
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S1);
             finiteAutomaton.ResetState();
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
@@ -57,7 +57,8 @@ namespace BPIProjectFSATests
 
             var input = "110";
 
-            var result = finiteAutomaton.ProcessInput(input);
+            bool result = finiteAutomaton.ProcessInput(input);
+            Assert.IsTrue(result);
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
             finiteAutomaton.ResetState();
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
@@ -83,7 +84,8 @@ namespace BPIProjectFSATests
 
             var input = "10";
 
-            var result = finiteAutomaton.ProcessInput(input);
+            bool result = finiteAutomaton.ProcessInput(input);
+            Assert.IsTrue(result);
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S2);
             finiteAutomaton.ResetState();
             Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
@@ -102,8 +104,7 @@ namespace BPIProjectFSATests
 
             var input = "1";
 
-            var resultState = finiteAutomaton.ProcessInput(input);
-            var result = finiteAutomaton.IsCurrentStateAFinalState();
+            bool result = finiteAutomaton.ProcessInput(input);
             Assert.IsFalse(result, "1 is not in the set of final states, therefore result should be false");
         }
     }

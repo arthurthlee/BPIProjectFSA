@@ -30,9 +30,9 @@ namespace BPIProjectFSA
                 Console.WriteLine("Enter binary input to be divided by 3: ");
                 input = Console.ReadLine();
 
-                // Process input and check if the result state is a final state
-                var result = finiteAutomaton.ProcessInput(input);
-                if (finiteAutomaton.IsCurrentStateAFinalState())
+                // Process input. If false is returned, the result state is not a final state
+                bool result = finiteAutomaton.ProcessInput(input);
+                if (result)
                 {
                     Console.WriteLine("The remainder divided by 3 is: " + (int)finiteAutomaton.GetCurrentState());
                 }

@@ -22,7 +22,7 @@ namespace BPIProjectFSA
 
         // By storing the transitions as a dictionary, we can optimize the runtime of getting the next state to be constant O(1).
         // This is better than if we stored the transitions in a list and iterated through the list to find a matching transition for the current state and input O(N).
-        public State SetState(int input)
+        public State Transition(int input)
         {
             var transition = Tuple.Create(currentState, input);
             if (transitions.ContainsKey(transition))
@@ -32,16 +32,15 @@ namespace BPIProjectFSA
             return currentState;
         }
 
-        // Process an entire string input
-        public State ProcessInput(string input)
+        // Process an entire string input. Return back whether the resulting state is a final state or not.
+        public bool ProcessInput(string input)
         {
-            State result = currentState;
             for (int index = 0; index < input.Length; index++)
             {
                 // This is under the assumption that the inputs will only be 1s and 0s, provided this FSA's only purpose is dividing a number.
-                result = SetState((int)Char.GetNumericValue(input[index]));
+                Transition((int)Char.GetNumericValue(input[index]));
             }
-            return result;
+            return IsCurrentStateAFinalState();
         }
 
         // Return back the current state of the automata
