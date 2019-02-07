@@ -31,10 +31,10 @@ namespace BPIProjectFSATests
             var input = "1010";
 
             bool result = finiteAutomaton.ProcessInput(input);
-            Assert.IsTrue(result);
-            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S1);
+            Assert.IsTrue(result, "Resulting state of input " + input + "should be part of the set of final states");
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S1, "Remainder of " + input + " should be 1");
             finiteAutomaton.ResetState();
-            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0, "FSA should be reset back to state 0");
         }
 
         [TestMethod]
@@ -58,10 +58,10 @@ namespace BPIProjectFSATests
             var input = "110";
 
             bool result = finiteAutomaton.ProcessInput(input);
-            Assert.IsTrue(result);
-            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+            Assert.IsTrue(result, "Resulting state of input " + input + "should be part of the set of final states");
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0, "Remainder of " + input + " should be 0");
             finiteAutomaton.ResetState();
-            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0, "FSA should be reset back to state 0");
         }
 
         [TestMethod]
@@ -85,10 +85,10 @@ namespace BPIProjectFSATests
             var input = "10";
 
             bool result = finiteAutomaton.ProcessInput(input);
-            Assert.IsTrue(result);
-            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S2);
+            Assert.IsTrue(result, "Resulting state of input " + input + "should be part of the set of final states");
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S2, "Remainder of " + input + " should be 2");
             finiteAutomaton.ResetState();
-            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0);
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0, "FSA should be reset back to state 0");
         }
 
         [TestMethod]
@@ -106,6 +106,8 @@ namespace BPIProjectFSATests
 
             bool result = finiteAutomaton.ProcessInput(input);
             Assert.IsFalse(result, "1 is not in the set of final states, therefore result should be false");
+            finiteAutomaton.ResetState();
+            Assert.AreEqual(finiteAutomaton.GetCurrentState(), State.S0, "FSA should be reset back to state 0");
         }
     }
 }
